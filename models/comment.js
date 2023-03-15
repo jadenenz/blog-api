@@ -3,6 +3,7 @@ const Schema = mongoose.Schema
 
 // Define schema
 const commentSchema = new Schema({
+  post: { type: Schema.Types.ObjectId, ref: "Post", required: true },
   author: { type: String, default: "Anonymous" },
   content: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
