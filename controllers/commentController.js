@@ -4,10 +4,10 @@ const Post = require("../models/post")
 exports.get_comments = async (req, res, next) => {
   const postId = req.params.postId
   try {
-    const foundPosts = await Comment.find({ post: req.params.postId }).sort([
+    const foundComments = await Comment.find({ post: req.params.postId }).sort([
       ["createdAt", "ascending"],
     ])
-    res.json(foundPosts)
+    res.json(foundComments)
   } catch (e) {
     res.send(e)
   }

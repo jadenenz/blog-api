@@ -7,6 +7,7 @@ import Title from "@/components/Title"
 
 export default function Home({ posts }) {
   const fetchedPostCards = posts.map((post) => {
+    if (!post.isPublished) return
     return (
       <li key={post._id}>
         <Card title={post.title} author={post.author} id={post._id} />
@@ -28,7 +29,9 @@ export default function Home({ posts }) {
           <Title />
         </div>
         <div className="my-12 mx-10 ">
-          <ul className="flex justify-center gap-8">{fetchedPostCards}</ul>
+          <ul className="flex flex-wrap justify-center gap-8">
+            {fetchedPostCards}
+          </ul>
         </div>
       </main>
       <Footer />

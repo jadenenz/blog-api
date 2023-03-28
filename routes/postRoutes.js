@@ -13,6 +13,9 @@ router.get("/", post_controller.get_posts)
 // Create a new post.
 router.post("/", post_controller.post_create_post)
 
+// Get specific post.
+router.get("/:postId/", post_controller.get_specific_post)
+
 /// COMMENT ROUTES ///
 
 // Get all comments for the associated post.

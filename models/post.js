@@ -7,6 +7,7 @@ const postSchema = new Schema({
   content: { type: String, required: true },
   author: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
+  isPublished: { type: Boolean, default: true },
 })
 
 // Sets the createdAt parameter equal to the current time

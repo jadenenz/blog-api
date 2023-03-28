@@ -10,7 +10,6 @@ exports.get_posts = async (req, res, next) => {
 }
 
 exports.post_create_post = async (req, res, next) => {
-  console.log(req.body)
   try {
     const newPost = new Post({
       title: req.body.title,
@@ -18,7 +17,16 @@ exports.post_create_post = async (req, res, next) => {
       author: req.body.author,
       createdAt: new Date(),
     }).save()
-    res.send("Resource successfully created")
+    res.status(201).json({ message: "Resource successfully created" })
+  } catch (error) {
+    res.json({ message: error })
+  }
+}
+
+exports.get_specific_post = async (req, res, next) => {
+  try {
+    const foundPost = await Post.findById(req.params.postId)
+    res.json(foundPost)
   } catch (e) {
     res.send(e)
   }
