@@ -1,9 +1,20 @@
 import Head from "next/head"
-import { Inter } from "next/font/google"
+import Card from "@/components/Card"
 
-const inter = Inter({ subsets: ["latin"] })
+export default function Home({ data }) {
+  const fetchedPostCards = data.map((post) => {
+    return (
+      <li key={post._id}>
+        <Card
+          title={post.title}
+          author={post.author}
+          id={post._id}
+          published={post.isPublished}
+        />
+      </li>
+    )
+  })
 
-export default function Home() {
   return (
     <>
       <Head>
@@ -13,8 +24,16 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h1>Admin</h1>
+        <h1 className="text-3xl font-bold underline">Blog Admin Page</h1>
+        <ul className="m-8 flex flex-wrap gap-8">{fetchedPostCards}</ul>
       </main>
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const res = await fetch("http://localhost:3000/posts/")
+  const data = await res.json()
+
+  return { props: { data } }
 }
