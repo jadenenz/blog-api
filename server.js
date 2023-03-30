@@ -19,6 +19,6 @@ app.use(cors())
 
 // Routes
 app.use("/posts/", postRouter)
-// app.use("/comments/", commentRouter)
+app.use("/comments/", commentRouter)
 
 app.listen(3000, () => console.log("server started on port 3000"))

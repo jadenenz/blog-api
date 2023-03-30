@@ -16,6 +16,12 @@ router.post("/", post_controller.post_create_post)
 // Get specific post.
 router.get("/:postId/", post_controller.get_specific_post)
 
+// Update isPublished boolean
+router.patch("/:postId", post_controller.toggle_publish)
+
+// Delete post given id
+router.delete("/:postId", post_controller.delete_post)
+
 /// COMMENT ROUTES ///
 
 // Get all comments for the associated post.

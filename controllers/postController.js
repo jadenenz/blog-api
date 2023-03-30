@@ -31,3 +31,27 @@ exports.get_specific_post = async (req, res, next) => {
     res.send(e)
   }
 }
+
+exports.delete_post = async (req, res, next) => {
+  const postId = req.params.postId
+  try {
+    const result = await Post.findByIdAndDelete(postId)
+    if (!result) {
+      return res.status(404).json({ message: "Post not found" })
+    }
+    res.status(200).json({ message: "Post deleted successfully" })
+  } catch (error) {
+    res.status(500).json({ message: "Error deleting post", error })
+  }
+}
+
+exports.toggle_publish = async (req, res, next) => {
+  const postId = req.params.postId
+  try {
+    const result = await Post.updateOne({ _id: postId }, [
+      { $set: { isPublished: { $eq: [false, "$isPublished"] } } },
+    ])
+  } catch (error) {
+    res.status(500).json({ message: "Error changing published status", error })
+  }
+}
