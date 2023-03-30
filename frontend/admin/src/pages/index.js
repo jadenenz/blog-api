@@ -1,5 +1,6 @@
 import Head from "next/head"
 import Card from "@/components/Card"
+import Link from "next/link"
 
 export default function Home({ data }) {
   const fetchedPostCards = data.map((post) => {
@@ -24,7 +25,10 @@ export default function Home({ data }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h1 className="text-3xl font-bold underline">Blog Admin Page</h1>
+        <h1 className="m-8 text-3xl font-bold underline">Blog Admin Page</h1>
+        <Link className="btn-primary btn m-8" href="/create">
+          Create new post
+        </Link>
         <ul className="m-8 flex flex-wrap gap-8">{fetchedPostCards}</ul>
       </main>
     </>
