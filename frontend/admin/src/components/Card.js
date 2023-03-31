@@ -29,11 +29,9 @@ export default function Card({ title, author, id, published }) {
     try {
       const result = await fetch(`http://localhost:3000/posts/${id}`, options)
       const response = await result.json()
-      console.log(response)
-      alert(response.message)
       router.reload(window.location.pathname)
     } catch (error) {
-      console.error(error)
+      console.error("err", error)
     }
   }
 

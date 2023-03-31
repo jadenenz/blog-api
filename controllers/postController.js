@@ -51,6 +51,7 @@ exports.toggle_publish = async (req, res, next) => {
     const result = await Post.updateOne({ _id: postId }, [
       { $set: { isPublished: { $eq: [false, "$isPublished"] } } },
     ])
+    res.status(200).json({ message: "Publish status successfully changed" })
   } catch (error) {
     res.status(500).json({ message: "Error changing published status", error })
   }

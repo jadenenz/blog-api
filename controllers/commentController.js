@@ -18,7 +18,7 @@ exports.post_comment = async (req, res, next) => {
   try {
     const newComment = await new Comment({
       post: postId,
-      author: req.body.author,
+      author: req.body.author === "" ? "Anonymous" : req.body.author,
       content: req.body.content,
       createdAt: new Date(),
     }).save()
