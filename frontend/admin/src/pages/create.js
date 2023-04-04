@@ -1,3 +1,4 @@
+require("dotenv").config()
 import { useForm } from "react-hook-form"
 import { useRouter } from "next/router"
 
@@ -15,7 +16,7 @@ export default function CreatePost() {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/posts/", options)
+      const response = await fetch(process.env.API_HOST + "/posts/", options)
       const json = await response.json()
       console.log(json)
       router.push("/")
